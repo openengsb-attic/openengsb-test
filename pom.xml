@@ -34,8 +34,6 @@
 
   <properties>
     <openengsb.api.version>3.0.0-SNAPSHOT</openengsb.api.version>
-
-    <guava.version>11.0.1</guava.version>
   </properties>
 
   <name>OpenEngSB :: Framework :: Test</name>

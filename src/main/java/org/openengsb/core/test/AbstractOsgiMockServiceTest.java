@@ -317,7 +317,7 @@ public abstract class AbstractOsgiMockServiceTest extends AbstractOpenEngSBTest 
         LOGGER.info("registering service with ID: " + serviceId);
         props.put(Constants.SERVICE_ID, serviceId);
         services.put(serviceReference, service);
-        synchronized (serviceReference) {
+        synchronized (serviceReferences) {
             serviceReferences.put(serviceReference, props);
         }
         when(serviceReference.getProperty(anyString())).thenAnswer(new Answer<Object>() {
@@ -437,8 +437,11 @@ public abstract class AbstractOsgiMockServiceTest extends AbstractOpenEngSBTest 
         doAnswer(new Answer<Void>() {
             @Override
             public Void answer(InvocationOnMock invocation) throws Throwable {
-                synchronized (serviceReferences) {
+                synchronized (services){
                     services.remove(serviceReference);
+                }
+                synchronized (serviceReferences) {
+
                     Dictionary<String, Object> props = serviceReferences.remove(serviceReference);
                     updateServiceListeners(ServiceEvent.UNREGISTERING, serviceReference, props);
                     return null;

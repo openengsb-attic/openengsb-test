@@ -47,7 +47,7 @@ public class BundleContextMockTest extends AbstractOsgiMockServiceTest {
 
     @Test
     public void testCreateServiceTrackerAndCreateService_shouldBeInTracker() throws Exception {
-        ServiceTracker serviceTracker = new ServiceTracker(bundleContext, Collection.class.getName(), null);
+        ServiceTracker<Collection<?>, Collection<?>> serviceTracker = new ServiceTracker<Collection<?>,Collection<?>>(bundleContext, Collection.class.getName(), null);
         serviceTracker.open();
         mockService(Collection.class, "foo");
         assertNotNull(serviceTracker.getService());
@@ -58,7 +58,7 @@ public class BundleContextMockTest extends AbstractOsgiMockServiceTest {
         ServiceRegistration<?> serviceRegistration =
             bundleContext.registerService(Collection.class.getName(), new HashSet<Object>(),
                 new Hashtable<String, Object>());
-        ServiceTracker serviceTracker = new ServiceTracker(bundleContext, Collection.class.getName(), null);
+        ServiceTracker<Collection<?>, Collection<?>> serviceTracker = new ServiceTracker<Collection<?>,Collection<?>>(bundleContext, Collection.class.getName(), null);
         serviceTracker.open();
         serviceRegistration.unregister();
         assertNull(serviceTracker.getService());

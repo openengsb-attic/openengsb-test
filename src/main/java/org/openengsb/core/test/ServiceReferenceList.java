@@ -28,9 +28,9 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;
 
 public final class ServiceReferenceList<ServiceType> implements List<ServiceReference<ServiceType>> {
-    private ServiceTracker tracker;
+    private ServiceTracker<ServiceType,ServiceType> tracker;
 
-    public ServiceReferenceList(ServiceTracker tracker) {
+    public ServiceReferenceList(ServiceTracker<ServiceType,ServiceType> tracker) {
         this.tracker = tracker;
         tracker.open();
     }

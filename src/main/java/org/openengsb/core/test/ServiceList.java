@@ -27,9 +27,9 @@ import org.apache.commons.lang.ArrayUtils;
 import org.osgi.util.tracker.ServiceTracker;
 
 public final class ServiceList<ServiceType> implements List<ServiceType> {
-    private ServiceTracker tracker;
+    private ServiceTracker<ServiceType,ServiceType> tracker;
 
-    public ServiceList(ServiceTracker tracker) {
+    public ServiceList(ServiceTracker<ServiceType,ServiceType> tracker) {
         this.tracker = tracker;
         tracker.open();
     }

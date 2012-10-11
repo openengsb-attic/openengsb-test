@@ -486,13 +486,13 @@ public abstract class AbstractOsgiMockServiceTest extends AbstractOpenEngSBTest 
     }
 
     protected <T> ServiceList<T> makeServiceList(Class<T> serviceClass) {
-        ServiceTracker serviceTracker = new ServiceTracker(bundleContext, serviceClass.getName(), null);
+        ServiceTracker<T,T> serviceTracker = new ServiceTracker<T,T>(bundleContext, serviceClass.getName(), null);
         ServiceList<T> serviceList = new ServiceList<T>(serviceTracker);
         return serviceList;
     }
 
     protected <T> ServiceReferenceList<T> makeServiceReferenceList(Class<T> serviceClass) {
-        ServiceTracker serviceTracker = new ServiceTracker(bundleContext, serviceClass.getName(), null);
+        ServiceTracker<T,T> serviceTracker = new ServiceTracker<T,T>(bundleContext, serviceClass.getName(), null);
         return new ServiceReferenceList<T>(serviceTracker);
     }
 

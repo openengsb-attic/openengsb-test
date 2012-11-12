@@ -18,6 +18,7 @@
 package org.openengsb.core.test;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyMap;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
@@ -359,6 +360,12 @@ public abstract class AbstractOsgiMockServiceTest extends AbstractOpenEngSBTest 
                 String id = (String) invocation.getArguments()[0];
                 when(result.getInstanceId()).thenReturn(id);
                 return result;
+            }
+        });
+        when(factory.applyAttributes(any(Connector.class), anyMap())).thenAnswer(new Answer<Connector>() {
+            @Override
+            public Connector answer(InvocationOnMock invocation) throws Throwable {
+                return (Connector) invocation.getArguments()[0];
             }
         });
         Dictionary<String, Object> props = new Hashtable<String, Object>();
